@@ -46,4 +46,41 @@ class Premium
         $this->cancion = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function getFechaRenovacion(): \DateTime
+    {
+        return $this->fechaRenovacion;
+    }
+
+    public function setFechaRenovacion(\DateTime $fechaRenovacion): void
+    {
+        $this->fechaRenovacion = $fechaRenovacion;
+    }
+
+    public function getUsuario(): Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(Usuario $usuario): void
+    {
+        $this->usuario = $usuario;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection|\Doctrine\Common\Collections\Collection
+     */
+    public function getCancion()
+    {
+        return $this->cancion;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection|\Doctrine\Common\Collections\Collection $cancion
+     */
+    public function setCancion($cancion): void
+    {
+        $this->cancion = $cancion;
+    }
+
+
 }
