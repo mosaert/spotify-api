@@ -2,6 +2,7 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+#USUARIOS
 usuarios:
     path: /usuarios
     controller: App\Controller\UsuarioController::usuarios
@@ -12,24 +13,24 @@ usuario:
     controller: App\Controller\UsuarioController::usuario
     methods: GET|PUT|DELETE
 
+#USUARIO SIGUE USUARIO
+#usuario_seguidos:
+#    path: /usuario/{id}/seguidos
+#    controller: App\Controller\UsuarioController::usuarioSeguidos
+#    methods: GET
 
-usuario_seguidos:
-    path: /usuario/{id}/seguidos
-    controller: App\Controller\UsuarioController::usuarioSeguidos
-    methods: GET
+#usuario_sigue_usuario:
+#    path: /usuario/{usuario_id}/sigue/{usuario_seguido_id}
+#    controller: App\Controller\UsuarioController::usuarioSigueUsuario
+#    methods: POST|DELETE
 
-usuario_sigue_usuario:
-    path: /usuario/{usuario_id}/sigue/{usuario_seguido_id}
-    controller: App\Controller\UsuarioController::usuarioSigueUsuario
-    methods: POST|DELETE
+#CONFIGURACIONES
+#configuraciones:
+#    path: /usuario/{usuario_id}/configuracion
+#    controller: App\Controller\ConfiguracionController::configuracion
+#    methods: GET|PUT
 
-
-configuraciones:
-    path: /usuario/{usuario_id}/configuracion
-    controller: App\Controller\ConfiguracionController::configuracion
-    methods: GET|PUT
-
-
+#PODCASTS
 podcasts:
     path: /podcasts
     controller: App\Controller\PodcastController::podcasts
@@ -47,13 +48,13 @@ podcasts_usuario:
 
 usuario_sigue_podcast:
     path: /usuario/{usuario_id}/podcasts/{podcast_id}
-    controller: App\Controller\PodcastController::UsuarioSiguePodcast
+    controller: App\Controller\PodcastController::usuarioSiguePodcast
     methods: POST|DELETE
 
-
+#CAPITULOS
 capitulos:
     path: /podcast/{id}/capitulos
-    controller: App\Controller\CapituloController::capitulos_podcast
+    controller: App\Controller\CapituloController::capitulosPodcast
     methods: GET
 
 capitulo:
@@ -61,7 +62,7 @@ capitulo:
     controller: App\Controller\CapituloController::capitulo
     methods: GET
 
-
+#SUSCRIPCIONES
 suscripciones:
     path: /usuario/{id}/suscripciones
     controller: App\Controller\SuscripcionController::suscripciones
@@ -72,7 +73,7 @@ suscripcion:
     controller: App\Controller\SuscripcionController::suscripcion
     methods: GET
 
-
+#PLAYLISTS
 playlists:
     path: /playlists
     controller: App\Controller\PlaylistController::playlists
@@ -85,15 +86,15 @@ playlist:
 
 playlists_usuario:
     path: usuario/{id}/playlists
-    controller: App\Controller\PlaylistController::playlists_usuario
+    controller: App\Controller\PlaylistController::playlistsUsuario
     methods: GET
 
 playlist_usuario:
-    path: usuario/{id}/playlist/{id}
-    controller: App\Controller\PlaylistController::playlist_usuario
+    path: usuario/{usuario_id}/playlist/{playlist_id}
+    controller: App\Controller\PlaylistController::playlistUsuario
     methods: GET|PUT|DELETE
 
-
+#CANCIONES
 canciones:
     path: /canciones
     controller: App\Controller\CancionController::canciones
@@ -106,15 +107,15 @@ cancion:
 
 playlist_canciones:
     path: /playlist/{id}/canciones
-    controller: App\Controller\CancionController::playlist_canciones
+    controller: App\Controller\CancionController::playlistCanciones
     methods: GET
 
 playlist_cancion:
     path: /playlist/{playlist_id}/cancion/{cancion_id}
-    controller: App\Controller\CancionController::playlist_cancion
+    controller: App\Controller\CancionController::playlistCancion
     methods: POST|DELETE
 
-
+#ARTISTAS
 artistas:
     path: /artistas
     controller: App\Controller\ArtistaController::artistas
@@ -122,15 +123,15 @@ artistas:
 
 artista_albums:
     path: /artista/{id}/albums
-    controller: App\Controller\ArtistaController::artista_albums
+    controller: App\Controller\ArtistaController::artistaAlbums
     methods: GET
 
 artista_album:
     path: /artista/{artista_id}/album/{album_id}
-    controller: App\Controller\ArtistaController::artista_album
+    controller: App\Controller\ArtistaController::artistaAlbum
     methods: GET
 
-
+#ALBUMS
 albums:
     path: /albums
     controller: App\Controller\AlbumController::albums
@@ -143,23 +144,23 @@ album:
 
 album_canciones:
     path: /album/{id}/canciones
-    controller: App\Controller\AlbumController::album_canciones
+    controller: App\Controller\AlbumController::albumCanciones
     methods: GET
 
-
+#CALIDAD
 calidad:
     path: /calidades
     controller: App\Controller\CalidadController::calidades
     methods: GET
 
-
+#IDIOMA
 idioma:
     path: /idiomas
     controller: App\Controller\IdiomaController::idiomas
     methods: GET
 
-
-tipo_descarga:
-    path: /tipos-descargas
-    controller: App\Controller\TipoDescargaController::tiposDescargas
-    methods: GET
+#TIPO DESCARGA
+#tipo_descarga:
+#    path: /tipos-descargas
+#    controller: App\Controller\TipoDescargaController::tiposDescargas
+#    methods: GET
