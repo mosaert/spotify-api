@@ -25,10 +25,10 @@ usuario:
 #    methods: POST|DELETE
 
 #CONFIGURACIONES
-#configuraciones:
-#    path: /usuario/{usuario_id}/configuracion
-#    controller: App\Controller\ConfiguracionController::configuracion
-#    methods: GET|PUT
+configuraciones:
+    path: /usuario/{usuario_id}/configuracion
+    controller: App\Controller\ConfiguracionController::configuracion
+    methods: GET|PUT
 
 #PODCASTS
 podcasts:
