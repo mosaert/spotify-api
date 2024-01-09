@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+
+use App\Entity\Eliminada;
 use App\Entity\Playlist;
 use App\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -8,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
+use \DateTime;
 
 class PlaylistController extends AbstractController
 {
@@ -77,21 +80,21 @@ class PlaylistController extends AbstractController
         $playlists = null;
 
         #PLAYLISTS QUE SIGUE
-         
+         /*
         $playlistsSigue = $this->getDoctrine()
         ->getRepository(Usuario::class)
         ->findOneBy(['id' => $id])
         ->getPlaylist();
-        
+        */
 
         #PLAYLISTS QUE HA CREADO
         
-        $playlistsCrea = $this->getDoctrine()
+        $playlists = $this->getDoctrine()
         ->getRepository(Playlist::class)
         ->findBy(['usuario' => $id]);
         
         #MIX
-        $playlists = [$playlistsCrea, $playlistsSigue];
+        # $playlists = [$playlistsCrea, $playlistsSigue];
 
         if ($request->isMethod("GET")) {
 
@@ -110,8 +113,70 @@ class PlaylistController extends AbstractController
         $usuarioId = $request->get('usuario_id');
         $playlistId = $request->get('playlist_id');
 
-        #FALTA
+        $playlistsUsuario = $this->getDoctrine()
+        ->getRepository(Playlist::class)
+        ->findBy(['usuario' => $usuarioId]);
 
+        $playlist = null;
+
+        $playlist = $this->getDoctrine()
+        ->getRepository(Playlist::class)
+        ->findOneBy(['id' => $playlistId]);
+
+        if (in_array($playlist, $playlistsUsuario)){
+            if ($request->isMethod("GET")) {
+                
+                $playlist = $serializer->serialize(
+                    $playlist, 
+                    'json', [
+                    'groups' => ['playlist']]);
+    
+                return new Response($playlist);
+               
+            }
+
+            if ($request->isMethod("PUT")) {
+
+                if (!empty($playlist)){
+
+                    $bodyData = $request->getContent();
+                    $playlist = $serializer->deserialize(
+                        $bodyData,
+                        Playlist::class,
+                        'json',
+                        ['object_to_populate' => $playlist]
+                    );
+        
+                    $this->getDoctrine()->getManager()->persist($playlist);
+                    $this->getDoctrine()->getManager()->flush();
+        
+                    $playlist = $serializer->serialize(
+                        $playlist, 
+                        'json', [
+                        'groups' => ['playlist']]);
+        
+                    return new Response($playlist);
+                }
+                
+            }
+
+            if ($request->isMethod("DELETE")) {
+
+                $deletedPlaylist = new Eliminada();
+                $deletedPlaylist->setFechaEliminacion(new DateTime('now'));
+                $deletedPlaylist->setPlaylist($playlist);
+
+                
+                $deletedPlaylist = clone $playlist;
+                $this->getDoctrine()->getManager()->persist($playlist);
+                $this->getDoctrine()->getManager()->flush();
+    
+                $deletedPlaylist = $serializer->serialize($deletedPlaylist, 'json', ['groups' => 'playlist']);
+                return new Response($deletedPlaylist);
+                
+            }
+        }
+        return new JsonResponse(['msg' => "Esa playlist no es de ese usuario."], 404);
     }
     
 }
