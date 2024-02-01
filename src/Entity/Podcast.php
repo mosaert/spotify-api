@@ -20,7 +20,7 @@ class Podcast
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      *
-     * @Groups ("podcast")
+     * @Groups("podcast")
      */
     private $id;
 
@@ -29,7 +29,7 @@ class Podcast
      *
      * @ORM\Column(name="titulo", type="string", length=100, nullable=false)
      *
-     * @Groups ("podcast")
+     * @Groups("podcast")
      */
     private $titulo;
 
@@ -38,7 +38,7 @@ class Podcast
      *
      * @ORM\Column(name="imagen", type="string", length=255, nullable=true)
      *
-     * @Groups ("podcast")
+     * @Groups("podcast")
      */
     private $imagen;
 
@@ -47,7 +47,7 @@ class Podcast
      *
      * @ORM\Column(name="descripcion", type="text", length=65535, nullable=true)
      *
-     * @Groups ("podcast")
+     * @Groups("podcast")
      */
     private $descripcion;
 
@@ -56,7 +56,7 @@ class Podcast
      *
      * @ORM\Column(name="anyo", type="datetime", nullable=true)
      *
-     * @Groups ("podcast")
+     * @Groups("podcast")
      */
     private $anyo;
 
@@ -65,7 +65,7 @@ class Podcast
      *
      * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="podcast")
      *
-     * @Groups ("podcast")
+     * @Groups("podcast")
      */
     private $usuario = array();
 

@@ -99,6 +99,8 @@ class Usuario
      *     @ORM\JoinColumn(name="cancion_id", referencedColumnName="id")
      *   }
      * )
+     *
+     * @Groups ("usuario")
      */
     private $cancion = array();
 
@@ -114,6 +116,8 @@ class Usuario
      *     @ORM\JoinColumn(name="podcast_id", referencedColumnName="id")
      *   }
      * )
+     *
+     * @Groups ("usuario")
      */
     private $podcast = array();
 
@@ -129,6 +133,8 @@ class Usuario
      *     @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      *   }
      * )
+     *
+     * @Groups ("usuario")
      */
     private $album = array();
 
@@ -144,6 +150,8 @@ class Usuario
      *     @ORM\JoinColumn(name="artista_id", referencedColumnName="id")
      *   }
      * )
+     *
+     * @Groups ("usuario")
      */
     private $artista = array();
 
@@ -159,6 +167,8 @@ class Usuario
      *     @ORM\JoinColumn(name="playlist_id", referencedColumnName="id")
      *   }
      * )
+     *
+     * @Groups ("usuario")
      */
     private $playlist = array();
 
